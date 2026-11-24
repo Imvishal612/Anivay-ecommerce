@@ -1,0 +1,18 @@
+Options -Indexes
+<Files "orders.json">
+  Require all denied
+</Files>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 7 days"
+ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^shop/?$ shop.html [L]
+RewriteRule ^contact/?$ contact.html [L]
+RewriteRule ^track-order/?$ track-order.html [L]
